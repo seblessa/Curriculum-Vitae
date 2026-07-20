@@ -1,50 +1,75 @@
-# Seb CV
+<div align="center">
 
-LaTeX project for Sebastião Santos Lessa's one-page CV.
+<h1>Curriculum Vitae</h1>
 
-## Build
+<p>A clean, one-page A4 CV built with LuaLaTeX.</p>
 
-Always compile through the project script:
+<p><a href="./seb-cv.pdf"><strong>View the latest PDF</strong></a> · <a href="./seb-cv.tex">Browse the LaTeX source</a></p>
+
+<a href="./seb-cv.pdf">
+  <img src="./assets/cv-preview.png" alt="Preview of Sebastião Santos Lessa's CV" width="760">
+</a>
+
+</div>
+
+## About
+
+This repository contains the source and generated PDF for my CV. The layout is designed to keep professional experience prominent while fitting skills, certifications, education, and personal details into a readable two-column page.
+
+- A4, single-page layout
+- Clickable contact details and external links
+- Bundled fonts for consistent rendering
+- Reproducible build with one command
+
+## Use this as a template
+
+You need Python 3 and a TeX distribution that includes `latexmk` and LuaLaTeX. The fonts used by the CV are already included in the repository.
+
+1. Fork the repository or clone it:
+
+   ```bash
+   git clone https://github.com/seblessa/Curriculum-Vitae.git my-cv
+   cd my-cv
+   ```
+
+2. Replace the personal details and CV content in [`seb-cv.tex`](./seb-cv.tex).
+
+3. Build the PDF:
+
+   ```bash
+   ./build_cv.py --clean
+   ```
+
+4. Open `seb-cv.pdf`. That is your finished CV.
+
+To change colors, typography, spacing, or the column layout, edit [`seb-cv.cls`](./seb-cv.cls). Before publishing a fork, remove the existing personal PDFs from `legacy/`.
+
+## Project structure
+
+| Path | Purpose |
+| --- | --- |
+| `seb-cv.tex` | CV content |
+| `seb-cv.cls` | Layout, typography, colors, and reusable commands |
+| `build_cv.py` | Build entry point |
+| `seb-cv.pdf` | Latest generated CV |
+| `fonts/` | Bundled fonts and their licences |
+| `legacy/` | Yearly PDF snapshots |
+| `assets/` | README preview image |
+
+## Building
+
+For regular edits:
 
 ```bash
 ./build_cv.py
 ```
 
-For a clean build:
+For a clean rebuild:
 
 ```bash
 ./build_cv.py --clean
 ```
 
-The script uses `latexmk` with LuaLaTeX, keeps auxiliary LaTeX files in `.out/`, updates `seb-cv.pdf`, and updates the yearly copy in `legacy/`.
+Each successful build updates `seb-cv.pdf` and the current-year PDF in `legacy/`. Auxiliary LaTeX files stay in the ignored `.out/` directory.
 
-## Legacy PDFs
-
-Every successful build writes a copy to `legacy/` for the current year.
-
-If a file for the current year already exists, the script replaces it. If not, it creates a new yearly file using the existing naming pattern.
-
-## Visual QA
-
-After compiling, always verify the generated PDF visually. The build passing is not enough.
-
-Recommended check:
-
-```bash
-mkdir -p tmp/pdfs
-pdftoppm -png -r 180 seb-cv.pdf tmp/pdfs/seb-cv
-```
-
-Inspect the rendered PNG and confirm:
-
-- the CV is still one page;
-- no text is clipped or overlapping;
-- the two-column layout still feels balanced;
-- headings, bullets, dates, and links are aligned cleanly;
-- the professional experience section remains clear and chronological.
-
-Remove temporary render files after validation.
-
-## Agent Notes
-
-Use `seb-cv.tex` for content changes and `seb-cv.cls` for layout/style changes. Keep the CV to one page. Do not compile with raw `latexmk` unless you are modifying `build_cv.py`; use `./build_cv.py` instead.
+After changing the layout, check that the PDF is still one page and that no text is clipped or overlapping.
