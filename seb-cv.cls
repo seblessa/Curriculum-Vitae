@@ -5,7 +5,7 @@
 \DeclareOption{print}{\def\cv@print{}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
-\LoadClass{article}
+\LoadClass[a4paper]{article}
 
 \RequirePackage[lmargin=0.9cm, rmargin=0.9cm, tmargin=0.4cm, bmargin=0.4cm]{geometry}
 \RequirePackage[hidelinks]{hyperref}
