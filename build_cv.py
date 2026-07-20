@@ -16,7 +16,7 @@ MAIN_TEX = "seb-cv.tex"
 MAIN_PDF = "seb-cv.pdf"
 OUTPUT_DIRECTORY_NAME = ".out"
 OUTPUT_DIRECTORY = ROOT / OUTPUT_DIRECTORY_NAME
-LEGACY_DIRECTORY = ROOT / "personal-legacy"
+LEGACY_DIRECTORY = ROOT / "legacy"
 
 
 def parse_args() -> argparse.Namespace:

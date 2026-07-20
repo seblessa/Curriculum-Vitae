@@ -41,7 +41,7 @@ Only the `template/` directory is checked out. Then:
 2. Run `./build_cv.py --clean`.
 3. Open `cv.pdf`.
 
-See the [template guide](./template/README.md) or the [compiled example](./template/cv.pdf) for more detail.
+See the [template guide](./template/README.md), the [macOS and Windows setup guide](./template/SETUP.md), or the [compiled example](./template/cv.pdf) for more detail.
 
 ## Project structure
 
@@ -52,11 +52,13 @@ See the [template guide](./template/README.md) or the [compiled example](./templ
 | `build_cv.py` | Build entry point |
 | `seb-cv.pdf` | Latest generated CV |
 | `fonts/` | Bundled fonts and their licences |
-| `personal-legacy/` | Personal yearly PDF snapshots |
+| `legacy/` | Personal yearly PDF snapshots |
 | `assets/` | README preview image |
 | `template/` | Standalone, reusable CV template |
 
 ## Building my CV
+
+For a fresh machine, follow the [installation and agent workflow guide](./template/SETUP.md) first.
 
 For regular edits:
 
@@ -70,6 +72,6 @@ For a clean rebuild:
 ./build_cv.py --clean
 ```
 
-Each successful build updates `seb-cv.pdf` and the current-year PDF in `personal-legacy/`. Auxiliary LaTeX files stay in the ignored `.out/` directory.
+Each successful build updates `seb-cv.pdf` and the current-year PDF in `legacy/`. Auxiliary LaTeX files stay in the ignored `.out/` directory.
 
 After changing the layout, check that the PDF is still one page and that no text is clipped or overlapping.
