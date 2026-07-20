@@ -74,10 +74,10 @@
 }
 
 % Section headings
-\titlespacing{\section}{0pt}{4pt}{3pt}
-\titlespacing{\subsection}{0pt}{2pt}{1pt}
-\newcommand{\sectionsep}{\vspace{4pt}}
-\newcommand{\entrysep}{\vspace{3pt}}
+\titlespacing{\section}{0pt}{7pt}{4pt}
+\titlespacing{\subsection}{0pt}{3pt}{2pt}
+\newcommand{\sectionsep}{\vspace{7pt}}
+\newcommand{\entrysep}{\vspace{5pt}}
 \newcommand{\headerbar}{%
   \vspace*{-10pt}
   \par\noindent\textcolor{title}{\rule{\textwidth}{1pt}}%
@@ -114,8 +114,8 @@
 
 % Lists
 \newenvironment{tightemize}{
-  \begin{itemize}[leftmargin=*,label=\textbullet,itemsep=1.4pt,topsep=1.4pt,parsep=0pt,partopsep=0pt,labelsep=0.55em]
-  \setlength{\baselineskip}{12pt}
+  \begin{itemize}[leftmargin=*,label=\textbullet,itemsep=1.8pt,topsep=2pt,parsep=0pt,partopsep=0pt,labelsep=0.55em]
+  \setlength{\baselineskip}{12.3pt}
 }{
   \end{itemize}
 }
