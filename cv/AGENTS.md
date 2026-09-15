@@ -1,10 +1,10 @@
 # Agent Instructions
 
-- Use `./build_cv.py` to compile the CV. Use `./build_cv.py --clean` for final validation.
+- Use `./cv/build_cv.py` from the repository root (or `./build_cv.py` from this directory) to compile the CV. Use `--clean` for final validation.
 - Do not compile with raw `latexmk` unless you are changing the build script itself.
-- Every successful build updates `seb-cv.pdf` and the current-year PDF in `legacy/`.
+- Every successful build updates the root-level `seb-cv.pdf` and the current-year PDF in `legacy/`.
 - After compiling, render and inspect the PDF visually; a successful LaTeX build is not enough.
-- After final PDF validation, refresh `assets/cv-preview.png` with `pdftoppm -png -singlefile -r 120 seb-cv.pdf assets/cv-preview`.
+- After final PDF validation, refresh `assets/cv-preview.png` with `pdftoppm -png -singlefile -r 120 ../seb-cv.pdf assets/cv-preview`.
 - Keep the CV to one page and preserve the clean two-column layout.
 - Use `seb-cv.tex` for content and `seb-cv.cls` for visual structure/style.
 - Keep `template/` self-contained and free of personal CV content. Build it with `template/build_cv.py --clean`, then render and inspect `template/cv.pdf`.

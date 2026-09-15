@@ -1,6 +1,7 @@
 # Setup and build guide
 
-This guide covers both the reusable template and the personal CV at the repository root.
+This guide covers both the reusable template and the personal CV in `cv/`. The
+generated personal PDF is kept at the repository root.
 
 ## What you need
 
@@ -56,7 +57,7 @@ open cv.pdf
 From the repository root:
 
 ```bash
-python3 build_cv.py --clean
+python3 cv/build_cv.py --clean
 open seb-cv.pdf
 ```
 
@@ -98,7 +99,7 @@ Start-Process .\cv.pdf
 From the repository root:
 
 ```powershell
-py .\build_cv.py --clean
+py .\cv\build_cv.py --clean
 Start-Process .\seb-cv.pdf
 ```
 
@@ -107,15 +108,15 @@ Start-Process .\seb-cv.pdf
 From the repository root on macOS:
 
 ```bash
-python3 build_cv.py --clean
-(cd template && python3 build_cv.py --clean)
+python3 cv/build_cv.py --clean
+(cd cv/template && python3 build_cv.py --clean)
 ```
 
 From the repository root in Windows PowerShell:
 
 ```powershell
-py .\build_cv.py --clean
-Push-Location .\template
+py .\cv\build_cv.py --clean
+Push-Location .\cv\template
 py .\build_cv.py --clean
 Pop-Location
 ```
@@ -123,21 +124,21 @@ Pop-Location
 A successful full build produces or updates:
 
 - `seb-cv.pdf`, the current personal CV
-- the current-year PDF in `legacy/`
-- `template/cv.pdf`, the reusable example
+- the current-year PDF in `cv/legacy/`
+- `cv/template/cv.pdf`, the reusable example
 
 Use builds without `--clean` while editing for faster feedback. Always use `--clean` for final validation.
 
 ## Getting only the template
 
-Git cannot clone a single directory directly. These commands use sparse checkout so only `template/` appears in the working tree:
+Git cannot clone a single directory directly. These commands use sparse checkout so only `cv/template/` appears in the working tree:
 
 ```bash
 git clone --filter=blob:none --no-checkout https://github.com/seblessa/Curriculum-Vitae.git my-cv
 cd my-cv
-git sparse-checkout set --no-cone /template/
+git sparse-checkout set --no-cone /cv/template/
 git checkout
-cd template
+cd cv/template
 ```
 
 The commands work in macOS Terminal, Git Bash, and PowerShell.
@@ -146,14 +147,14 @@ The commands work in macOS Terminal, Git Bash, and PowerShell.
 
 1. Check the working directory and existing changes with `git status --short`.
 2. Confirm that Python, `latexmk`, and LuaLaTeX are available with the verification commands above.
-3. For the personal CV, edit `seb-cv.tex` for content and `seb-cv.cls` for layout.
-4. For the reusable version, edit `template/cv.tex` and `template/cv.cls`. Never copy personal CV content into the template.
+3. For the personal CV, edit `cv/seb-cv.tex` for content and `cv/seb-cv.cls` for layout.
+4. For the reusable version, edit `cv/template/cv.tex` and `cv/template/cv.cls`. Never copy personal CV content into the template.
 5. Run the relevant build script with `--clean` for final validation. Do not invoke `latexmk` directly.
 6. Confirm that the generated PDF has one A4 page, then inspect it visually for clipping, overlaps, and awkward line breaks.
 7. After changing the personal CV, refresh the public preview when `pdftoppm` is available:
 
    ```bash
-   pdftoppm -png -singlefile -r 120 seb-cv.pdf assets/cv-preview
+   pdftoppm -png -singlefile -r 120 seb-cv.pdf cv/assets/cv-preview
    ```
 
 ## Troubleshooting
@@ -168,7 +169,7 @@ The complete MacTeX and TeX Live installations include the required packages. If
 
 ### A bundled font is not found
 
-Run the build command from the directory containing `build_cv.py`. The class files use relative paths to the bundled fonts.
+Run the personal build from the repository root with `python3 cv/build_cv.py`, or run the template build from `cv/template/`. The class files use relative paths to the bundled fonts.
 
 ### The script is not executable on macOS
 

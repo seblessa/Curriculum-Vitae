@@ -11,12 +11,13 @@ from datetime import date
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent
+SOURCE_ROOT = Path(__file__).resolve().parent
+REPOSITORY_ROOT = SOURCE_ROOT.parent
 MAIN_TEX = "seb-cv.tex"
 MAIN_PDF = "seb-cv.pdf"
 OUTPUT_DIRECTORY_NAME = ".out"
-OUTPUT_DIRECTORY = ROOT / OUTPUT_DIRECTORY_NAME
-LEGACY_DIRECTORY = ROOT / "legacy"
+OUTPUT_DIRECTORY = SOURCE_ROOT / OUTPUT_DIRECTORY_NAME
+LEGACY_DIRECTORY = SOURCE_ROOT / "legacy"
 
 
 def parse_args() -> argparse.Namespace:
@@ -55,7 +56,7 @@ def legacy_pdf_path(year: int) -> Path:
 
 def main() -> None:
     args = parse_args()
-    main_tex_path = ROOT / MAIN_TEX
+    main_tex_path = SOURCE_ROOT / MAIN_TEX
 
     if not main_tex_path.exists():
         raise SystemExit(f"Missing main TeX file: {main_tex_path}")
@@ -65,7 +66,7 @@ def main() -> None:
 
     OUTPUT_DIRECTORY.mkdir(parents=True, exist_ok=True)
 
-    print(f"Building CV in {ROOT}...")
+    print(f"Building CV sources in {SOURCE_ROOT}...")
     run_command(
         [
             "latexmk",
@@ -77,14 +78,14 @@ def main() -> None:
             f"-outdir={OUTPUT_DIRECTORY_NAME}",
             MAIN_TEX,
         ],
-        cwd=ROOT,
+        cwd=SOURCE_ROOT,
     )
 
     built_pdf_path = OUTPUT_DIRECTORY / MAIN_PDF
     if not built_pdf_path.exists():
         raise SystemExit(f"Build finished without creating {built_pdf_path}")
 
-    pdf_path = ROOT / MAIN_PDF
+    pdf_path = REPOSITORY_ROOT / MAIN_PDF
     shutil.copy2(built_pdf_path, pdf_path)
 
     LEGACY_DIRECTORY.mkdir(parents=True, exist_ok=True)

@@ -4,9 +4,9 @@
 
 <p>A clean, one-page A4 CV built with LuaLaTeX.</p>
 
-<p><a href="./seb-cv.pdf"><strong>View the latest PDF</strong></a> · <a href="./seb-cv.tex">Browse the LaTeX source</a></p>
+<p><a href="../seb-cv.pdf"><strong>View the latest PDF</strong></a> · <a href="./seb-cv.tex">Browse the LaTeX source</a></p>
 
-<a href="./seb-cv.pdf">
+<a href="../seb-cv.pdf">
   <img src="./assets/cv-preview.png" alt="Preview of Sebastião Santos Lessa's CV" width="760">
 </a>
 
@@ -30,12 +30,12 @@ Git cannot clone a single directory directly, but sparse checkout gives the same
 ```bash
 git clone --filter=blob:none --no-checkout https://github.com/seblessa/Curriculum-Vitae.git my-cv
 cd my-cv
-git sparse-checkout set --no-cone /template/
+git sparse-checkout set --no-cone /cv/template/
 git checkout
-cd template
+cd cv/template
 ```
 
-Only the `template/` directory is checked out. Then:
+Only the `cv/template/` directory is checked out. Then:
 
 1. Replace the example content in `cv.tex`.
 2. Run `./build_cv.py --clean`.
@@ -50,7 +50,7 @@ See the [template guide](./template/README.md), the [macOS and Windows setup gui
 | `seb-cv.tex` | CV content |
 | `seb-cv.cls` | Layout, typography, colors, and reusable commands |
 | `build_cv.py` | Build entry point |
-| `seb-cv.pdf` | Latest generated CV |
+| `../seb-cv.pdf` | Latest generated CV (kept at repository root) |
 | `fonts/` | Bundled fonts and their licences |
 | `legacy/` | Personal yearly PDF snapshots |
 | `assets/` | README preview image |
@@ -63,15 +63,15 @@ For a fresh machine, follow the [installation and agent workflow guide](./templa
 For regular edits:
 
 ```bash
-./build_cv.py
+./cv/build_cv.py
 ```
 
 For a clean rebuild:
 
 ```bash
-./build_cv.py --clean
+./cv/build_cv.py --clean
 ```
 
-Each successful build updates `seb-cv.pdf` and the current-year PDF in `legacy/`. Auxiliary LaTeX files stay in the ignored `.out/` directory.
+Each successful build updates the root-level `seb-cv.pdf` and the current-year PDF in `legacy/`. Auxiliary LaTeX files stay in the ignored `.out/` directory.
 
 After changing the layout, check that the PDF is still one page and that no text is clipped or overlapping.
